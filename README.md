@@ -12,7 +12,6 @@
 * private 변수에 호출된 결과값(storedResults)을 입력된 키워드(storedKeyword)와 함께 저장
 * 이후 동일한 키워드로 검색하면 API를 호출하지 않고 캐싱 결과를 재사용
 
-[ 코드 ]
 ```javascript
 // store/fetchResultThunk.ts
 ...
@@ -43,11 +42,10 @@ export const fetchResultThunk = createAsyncThunk(
 );
 ```
 
-### 2. throttle을 활용하여 입력마다 API를 호출하지 않도록 함
+### 2. throttle을 활용하여 입력마다 API를 호출하지 않도록 하기
 * debounce는 일정 시간 '이후' API를 호출하지만 throttle은 일정 시간'마다' API 호출
 * 자동완성 검색의 특성상 기다린 후에 결과값을 보는 debounce보다 입력과 비슷하게 결과값을 볼 수 있는 throttle이 사용자 경험에 더 좋을 것이라고 판단
 
-[ 코드 ]
 ```javascript
 // components/SearchBar/SearchInput
   ...
