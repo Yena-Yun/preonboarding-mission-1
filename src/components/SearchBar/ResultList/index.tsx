@@ -18,7 +18,7 @@ export const ResultList = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.ul`
   position: relative;
   width: 36rem;
   padding: ${({ theme }) => theme.size.md} ${({ theme }) => theme.size.lg};
