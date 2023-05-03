@@ -8,8 +8,8 @@ export const SearchList = () => {
   return (
     <Container>
       <SubTitle>추천 검색어</SubTitle>
-      {array.map((item: string) => (
-        <SearchItem item={item} />
+      {array.map((item: string, id: number) => (
+        <SearchItem key={id} item={item} />
       ))}
     </Container>
   );

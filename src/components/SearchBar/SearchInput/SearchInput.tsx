@@ -1,16 +1,34 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import SearchIcon from 'assets/search.svg';
+import { getSearchResult } from 'api/getSearchResult';
 
 export const SearchInput = () => {
+  const [keyword, setKeyword] = useState('');
+
+  const searchInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.currentTarget.value);
+    setKeyword(e.currentTarget.value);
+  };
+
+  const searchSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!keyword) return;
+
+    const result = await getSearchResult(keyword);
+    console.log(result);
+  };
+
   return (
     <Container>
       <IconBox>
         <SearchIcon />
       </IconBox>
-      <InputBox>
-        <ElInput />
+      <InputForm onSubmit={searchSubmitHandler}>
+        <ElInput value={keyword} onChange={searchInputHandler} />
         <SubmitButton>검색</SubmitButton>
-      </InputBox>
+      </InputForm>
     </Container>
   );
 };
@@ -33,7 +51,7 @@ const IconBox = styled.div`
   height: 1.4rem;
 `;
 
-const InputBox = styled.form`
+const InputForm = styled.form`
   display: flex;
   height: 100%;
 `;
