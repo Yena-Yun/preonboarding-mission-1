@@ -1,14 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'store';
 import { searchAPI } from 'api/searchAPI';
-import { ResultState } from 'types/searchResult';
-
-interface SearchState {
-  keyword: string;
-  results: ResultState[];
-  loading: boolean;
-  error?: string;
-}
+import { ApiResultState, SearchState } from './types';
 
 const initialState: SearchState = {
   keyword: '',
@@ -16,11 +9,6 @@ const initialState: SearchState = {
   loading: false,
   error: '',
 };
-
-interface ApiResultState {
-  keyword: string;
-  apiResults: ResultState[];
-}
 
 let previousApiResult: ApiResultState = {
   keyword: '',
@@ -37,6 +25,7 @@ export const fetchResultThunk = createAsyncThunk(
 
     const searchResults = await searchAPI.fetchResults(keyword);
     console.log('api로 새로운 데이터 호출');
+
     console.log(searchResults);
 
     previousApiResult = { keyword, apiResults: searchResults };
