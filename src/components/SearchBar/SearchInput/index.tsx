@@ -4,7 +4,7 @@ import { useAppDispatch } from 'store';
 import { fetchResultThunk } from 'store/fetchResultThunk';
 import SearchIcon from 'assets/search.svg';
 
-export const SearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+export const SearchInput = () => {
   const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
   const throttlingRef = useRef(false);
@@ -12,13 +12,9 @@ export const SearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
   const handleThrottleSearch = () => {
     console.log(inputRef.current?.value);
 
-    if (throttlingRef.current) {
-      return;
-    }
+    if (throttlingRef.current) return;
 
-    if (!inputRef.current?.value.trim()) {
-      return;
-    }
+    if (!inputRef.current?.value.trim()) return;
 
     throttlingRef.current = true;
 
