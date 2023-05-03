@@ -20,7 +20,7 @@ export const ResultItem = ({ resultInfo }: SearchItemProps) => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.li`
   position: relative;
   width: ${({ theme }) => theme.size.full};
   height: 3rem;
