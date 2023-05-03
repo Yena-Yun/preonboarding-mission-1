@@ -5,14 +5,14 @@ import { selectResult } from 'store/fetchResultThunk';
 import { ResultState } from 'types/searchResult';
 
 export const ResultList = () => {
-  const { results } = useAppSelector(selectResult);
+  const { results: searchResults } = useAppSelector(selectResult);
 
   return (
     <Container>
       <SubTitle>추천 검색어</SubTitle>
-      {results.length < 1 && <NoResultGuide>검색어 없음</NoResultGuide>}
-      {results.map(({ id, name }: ResultState) => (
-        <ResultItem key={id} name={name} />
+      {searchResults.length < 1 && <NoResultGuide>검색어 없음</NoResultGuide>}
+      {searchResults.map(({ id, name }: ResultState) => (
+        <ResultItem key={id} resultInfo={{ id, name }} />
       ))}
     </Container>
   );
