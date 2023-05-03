@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { fetchSearchResults } from 'store/thunk/fetchSearchResult';
-import { useAppDispatch } from 'store/hooks';
+import { fetchResultThunk } from 'store/hooks/fetchResultThunk';
+import { useAppDispatch } from 'store/hooks/root';
 import SearchIcon from 'assets/search.svg';
 
 export const SearchInput = () => {
@@ -13,12 +13,12 @@ export const SearchInput = () => {
     setKeyword(e.currentTarget.value);
   };
 
-  const searchSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  const searchSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!keyword) return;
 
-    await dispatch(fetchSearchResults(keyword));
+    dispatch(fetchResultThunk(keyword));
   };
 
   return (

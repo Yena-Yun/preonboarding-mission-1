@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import resultReducer from './features/searchResults/resultSlice';
+import resultReducer from './hooks/fetchResultThunk';
 
 export const store = configureStore({
   reducer: {

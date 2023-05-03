@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import SearchIcon from 'assets/search.svg';
 
 interface SearchItemProps {
-  item: string;
+  name: string;
 }
 
-export const SearchItem = ({ item }: SearchItemProps) => {
+export const SearchItem = ({ name }: SearchItemProps) => {
   return (
     <Container>
       <IconBox>
         <SearchIcon />
       </IconBox>
-      <Keyword>{item}</Keyword>
+      <Keyword>{name}</Keyword>
     </Container>
   );
 };
