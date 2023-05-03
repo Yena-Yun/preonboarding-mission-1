@@ -23,6 +23,7 @@ export const fetchResultThunk = createAsyncThunk(
       console.log('이전 결과 재사용');
       return storedData[0].storedResults;
     }
+
     const searchResults = await searchAPI.fetchResults(keyword);
     console.log('api로 새로운 데이터 호출');
 
@@ -30,6 +31,7 @@ export const fetchResultThunk = createAsyncThunk(
       ...previousApiResult,
       { storedKeyword: keyword, storedResults: searchResults },
     ];
+
     return searchResults;
   }
 );
