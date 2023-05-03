@@ -1,24 +1,33 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import { useAppDispatch } from 'store';
 import { fetchResultThunk } from 'store/fetchResultThunk';
 import SearchIcon from 'assets/search.svg';
 
-export const SearchInput = () => {
+export const SearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
   const dispatch = useAppDispatch();
-  const [keyword, setKeyword] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const throttlingRef = useRef(false);
 
-  const searchInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value);
-    setKeyword(e.currentTarget.value);
-  };
+  const handleThrottleSearch = () => {
+    console.log(inputRef.current?.value);
 
-  const searchSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    if (throttlingRef.current) {
+      return;
+    }
 
-    if (!keyword) return;
+    if (!inputRef.current?.value.trim()) {
+      return;
+    }
 
-    dispatch(fetchResultThunk(keyword));
+    throttlingRef.current = true;
+
+    setTimeout(() => {
+      throttlingRef.current = false;
+      if (inputRef.current) {
+        dispatch(fetchResultThunk(inputRef.current.value));
+      }
+    }, 400);
   };
 
   return (
@@ -26,8 +35,12 @@ export const SearchInput = () => {
       <IconBox>
         <SearchIcon />
       </IconBox>
-      <InputForm onSubmit={searchSubmitHandler}>
-        <ElInput value={keyword} onChange={searchInputHandler} />
+      <InputForm>
+        <ElInput
+          ref={inputRef}
+          value={inputRef.current?.value}
+          onChange={handleThrottleSearch}
+        />
         <SubmitButton>검색</SubmitButton>
       </InputForm>
     </Container>
