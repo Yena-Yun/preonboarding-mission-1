@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'store';
 import { searchAPI } from 'api/searchAPI';
-import { ApiResultState, SearchState } from './types';
+import { StoredData, SearchState } from './types';
 
 const initialState: SearchState = {
   keyword: '',
@@ -10,26 +10,26 @@ const initialState: SearchState = {
   error: '',
 };
 
-let previousApiResult: ApiResultState = {
-  keyword: '',
-  apiResults: [],
-};
+let previousApiResult: StoredData[] = [];
 
 export const fetchResultThunk = createAsyncThunk(
   'search/fetchResults',
   async (keyword: string) => {
-    if (previousApiResult.apiResults && previousApiResult.keyword === keyword) {
-      console.log('이전 결과 재사용');
-      return previousApiResult.apiResults;
-    }
+    const storedData = previousApiResult.filter(
+      (stored) => stored.storedKeyword === keyword
+    );
 
+    if (storedData.length > 0) {
+      console.log('이전 결과 재사용');
+      return storedData[0].storedResults;
+    }
     const searchResults = await searchAPI.fetchResults(keyword);
     console.log('api로 새로운 데이터 호출');
 
-    console.log(searchResults);
-
-    previousApiResult = { keyword, apiResults: searchResults };
-
+    previousApiResult = [
+      ...previousApiResult,
+      { storedKeyword: keyword, storedResults: searchResults },
+    ];
     return searchResults;
   }
 );

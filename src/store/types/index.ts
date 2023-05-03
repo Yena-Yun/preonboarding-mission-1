@@ -7,7 +7,7 @@ export interface SearchState {
   error?: string;
 }
 
-export interface ApiResultState {
-  keyword: string;
-  apiResults: ResultState[];
+export interface StoredData {
+  storedKeyword: string;
+  storedResults: ResultState[];
 }
