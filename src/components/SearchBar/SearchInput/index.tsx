@@ -3,37 +3,16 @@ import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from 'store';
 import { fetchResultThunk, selectResult } from 'store/fetchResultThunk';
 import SearchIcon from 'assets/search.svg';
-import { arrowDown, arrowUp, escape } from 'store/focusedIndex';
 
-export const SearchInput = () => {
+interface SearchInputProps {
+  handleMoveKeyboard: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+}
+
+export const SearchInput = ({ handleMoveKeyboard }: SearchInputProps) => {
   const dispatch = useAppDispatch();
-  const { results } = useAppSelector(selectResult);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const throttlingRef = useRef(false);
-
-  const resLength = results.length;
-  const maxLength = resLength - 1;
-
-  const changeKeyboardIndex = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const keyCode = e.key;
-
-    if (keyCode === 'ArrowDown') {
-      resLength > 0 && resLength <= maxLength
-        ? dispatch(arrowDown(resLength))
-        : dispatch(arrowDown(maxLength));
-    }
-
-    if (keyCode === 'ArrowUp') {
-      resLength > 0 && resLength <= maxLength
-        ? dispatch(arrowUp(resLength))
-        : dispatch(arrowUp(maxLength));
-    }
-
-    if (keyCode === 'Escape') {
-      dispatch(escape());
-    }
-  };
 
   const handleThrottleSearch = () => {
     console.log(inputRef.current?.value);
@@ -62,7 +41,7 @@ export const SearchInput = () => {
           ref={inputRef}
           value={inputRef.current?.value}
           onChange={handleThrottleSearch}
-          // onKeyDown={changeKeyboardIndex}
+          onKeyDown={handleMoveKeyboard}
           autoFocus
         />
         <SubmitButton>검색</SubmitButton>

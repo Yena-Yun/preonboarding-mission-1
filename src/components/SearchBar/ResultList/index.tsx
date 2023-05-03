@@ -3,16 +3,26 @@ import { ResultItem } from './ResultItem';
 import { useAppSelector } from 'store';
 import { selectResult } from 'store/fetchResultThunk';
 import { ResultState } from 'types/searchResult';
+import { RefObject } from 'react';
 
-export const ResultList = () => {
+interface ResultListProps {
+  listRef: RefObject<HTMLUListElement>;
+  focusedIndex: number;
+}
+
+export const ResultList = ({ listRef, focusedIndex }: ResultListProps) => {
   const { results: searchResults } = useAppSelector(selectResult);
 
   return (
-    <Container>
+    <Container ref={listRef}>
       <SubTitle>추천 검색어</SubTitle>
       {searchResults.length < 1 && <NoResultGuide>검색어 없음</NoResultGuide>}
       {searchResults.map(({ id, name }: ResultState) => (
-        <ResultItem key={id} resultInfo={{ id, name }} />
+        <ResultItem
+          key={id}
+          resultInfo={{ id, name }}
+          focusedIndex={focusedIndex}
+        />
       ))}
     </Container>
   );

@@ -6,12 +6,14 @@ interface SearchItemProps {
     id: number;
     name: string;
   };
+  focusedIndex: number;
 }
 
-export const ResultItem = ({ resultInfo }: SearchItemProps) => {
+export const ResultItem = ({ resultInfo, focusedIndex }: SearchItemProps) => {
   const { id, name } = resultInfo;
+
   return (
-    <Container>
+    <Container focused={id === focusedIndex}>
       <IconBox>
         <SearchIcon />
       </IconBox>
@@ -20,11 +22,12 @@ export const ResultItem = ({ resultInfo }: SearchItemProps) => {
   );
 };
 
-const Container = styled.li`
+const Container = styled.li<{ focused: boolean }>`
   position: relative;
   width: ${({ theme }) => theme.size.full};
   height: 3rem;
   padding: ${({ theme }) => theme.size.xs} 0;
+  background-color: ${({ focused, theme }) => focused && theme.color.secondary};
 `;
 
 const IconBox = styled.div`
