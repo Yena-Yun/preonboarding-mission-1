@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { STATUS_CODE } from './const';
 
-export const getSearchResult = async (keyword: string) => {
+const fetchResults = async (keyword: string) => {
   try {
     const { status, data } = await axios.get(
       `/api/v1/search-conditions/?name=${keyword}`,
@@ -9,7 +9,6 @@ export const getSearchResult = async (keyword: string) => {
     );
 
     if (status === STATUS_CODE.SUCCESS) {
-      console.log(data);
       console.info('calling api');
 
       return data;
@@ -17,4 +16,8 @@ export const getSearchResult = async (keyword: string) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const searchAPI = {
+  fetchResults,
 };
