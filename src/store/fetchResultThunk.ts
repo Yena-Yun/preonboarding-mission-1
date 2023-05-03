@@ -1,7 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'store';
 import { searchAPI } from 'api/searchAPI';
-import { StoredData, SearchState } from './types';
+import { ResultState } from 'types/searchResult';
+
+interface SearchState {
+  keyword: string;
+  results: ResultState[];
+  loading: boolean;
+  error?: string;
+}
+
+interface StoredData {
+  storedKeyword: string;
+  storedResults: ResultState[];
+}
 
 const initialState: SearchState = {
   keyword: '',
