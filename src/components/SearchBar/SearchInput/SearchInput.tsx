@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { fetchSearchResults } from 'store/thunk/fetchSearchResult';
+import { useAppDispatch } from 'store/hooks';
 import SearchIcon from 'assets/search.svg';
-import { getSearchResult } from 'api/getSearchResult';
 
 export const SearchInput = () => {
+  const dispatch = useAppDispatch();
   const [keyword, setKeyword] = useState('');
 
   const searchInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,8 +18,7 @@ export const SearchInput = () => {
 
     if (!keyword) return;
 
-    const result = await getSearchResult(keyword);
-    console.log(result);
+    await dispatch(fetchSearchResults(keyword));
   };
 
   return (
