@@ -21,16 +21,16 @@ export const ResultList = () => {
 const Container = styled.div`
   position: relative;
   width: 36rem;
-  padding: 1.2rem 1.5rem;
-  border-radius: 1rem;
-  background-color: #ffffff;
+  padding: ${({ theme }) => theme.size.md} ${({ theme }) => theme.size.lg};
+  border-radius: ${({ theme }) => theme.size.base};
+  background-color: ${({ theme }) => theme.color.white};
   overflow: hidden;
 `;
 
 const SubTitle = styled.p`
-  margin-bottom: 0.5rem;
-  font-size: 0.8rem;
-  color: #849aad;
+  margin-bottom: ${({ theme }) => theme.size.xs};
+  font-size: ${({ theme }) => theme.size.sm};
+  color: ${({ theme }) => theme.color.gray};
 `;
 
 const NoResultGuide = styled.p``;

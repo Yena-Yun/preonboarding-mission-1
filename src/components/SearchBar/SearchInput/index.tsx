@@ -38,9 +38,9 @@ const Container = styled.div`
   position: relative;
   width: 36rem;
   height: 4rem;
-  margin: 0.5rem;
+  margin: ${({ theme }) => theme.size.xs};
   border-radius: 10rem;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.color.white};
   overflow: hidden;
 `;
 
@@ -48,27 +48,27 @@ const IconBox = styled.div`
   position: absolute;
   top: 30%;
   left: 5%;
-  width: 1.4rem;
-  height: 1.4rem;
+  width: ${({ theme }) => theme.size.lg};
+  height: ${({ theme }) => theme.size.lg};
 `;
 
 const InputForm = styled.form`
-  display: flex;
-  height: 100%;
+  ${({ theme }) => theme.flex.isFlex};
+  height: ${({ theme }) => theme.size.full};
 `;
 
 const ElInput = styled.input`
   flex: 5;
   margin-left: 5rem;
-  font-size: 1.6rem;
+  font-size: ${({ theme }) => theme.size.xl};
 `;
 
 const SubmitButton = styled.button`
   flex: 1;
-  height: 100%;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #ffffff;
-  background-color: #3b7ddb;
-  cursor: pointer;
+  height: ${({ theme }) => theme.size.full};
+  font-size: ${({ theme }) => theme.size.md};
+  font-weight: ${({ theme }) => theme.weight.semibold};
+  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.primary};
+  cursor: ${({ theme }) => theme.cursor.pointer};
 `;

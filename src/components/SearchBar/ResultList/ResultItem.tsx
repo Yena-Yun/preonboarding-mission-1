@@ -18,20 +18,20 @@ export const ResultItem = ({ name }: SearchItemProps) => {
 
 const Container = styled.div`
   position: relative;
-  width: 100%;
+  width: ${({ theme }) => theme.size.full};
   height: 3rem;
-  padding: 0.5rem 0;
+  padding: ${({ theme }) => theme.size.xs} 0;
 `;
 
 const IconBox = styled.div`
   position: absolute;
   top: 30%;
   left: 0;
-  width: 1.2rem;
-  height: 1.2rem;
+  width: ${({ theme }) => theme.size.md};
+  height: ${({ theme }) => theme.size.md};
 `;
 
 const Keyword = styled.p`
   margin-left: 2.5rem;
-  font-size: 1.2rem;
+  font-size: ${({ theme }) => theme.size.md};
 `;

@@ -17,12 +17,12 @@ export const SearchBar = () => {
 };
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${({ theme }) => theme.flex.isFlex};
+  ${({ theme }) => theme.flex.isColumn};
+  ${({ theme }) => theme.flex.alignCenter};
   min-height: 100vh;
   padding-top: 6rem;
-  background-color: #ccebfb;
+  background-color: ${({ theme }) => theme.color.secondary};
 `;
 
 const Title = styled.h1`
