@@ -2,10 +2,14 @@ import styled from 'styled-components';
 import SearchIcon from 'assets/search.svg';
 
 interface SearchItemProps {
-  name: string;
+  resultInfo: {
+    id: number;
+    name: string;
+  };
 }
 
-export const ResultItem = ({ name }: SearchItemProps) => {
+export const ResultItem = ({ resultInfo }: SearchItemProps) => {
+  const { id, name } = resultInfo;
   return (
     <Container>
       <IconBox>
