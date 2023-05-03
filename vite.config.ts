@@ -12,4 +12,9 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  server: {
+    proxy: {
+      '/api': 'https://api.clinicaltrialskorea.com',
+    },
+  },
 });
