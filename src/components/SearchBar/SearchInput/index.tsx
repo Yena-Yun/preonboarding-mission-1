@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { fetchResultThunk } from 'store/hooks/fetchResultThunk';
-import { useAppDispatch } from 'store/hooks/root';
+import { useAppDispatch } from 'store';
+import { fetchResultThunk } from 'store/fetchResultThunk';
 import SearchIcon from 'assets/search.svg';
 
 export const SearchInput = () => {

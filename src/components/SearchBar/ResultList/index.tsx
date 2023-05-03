@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ResultItem } from './ResultItem';
-import { useAppSelector } from 'store/hooks/root';
-import { selectResult } from 'store/hooks/fetchResultThunk';
+import { useAppSelector } from 'store';
+import { selectResult } from 'store/fetchResultThunk';
 import { ResultState } from 'types/searchResult';
 
 export const ResultList = () => {
