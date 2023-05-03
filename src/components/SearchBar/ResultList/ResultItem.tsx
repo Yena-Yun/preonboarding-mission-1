@@ -5,7 +5,7 @@ interface SearchItemProps {
   name: string;
 }
 
-export const SearchItem = ({ name }: SearchItemProps) => {
+export const ResultItem = ({ name }: SearchItemProps) => {
   return (
     <Container>
       <IconBox>

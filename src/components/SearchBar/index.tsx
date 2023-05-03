@@ -1,5 +1,5 @@
-import { SearchList } from './SearchList/SearchList';
-import { SearchInput } from './SearchInput/SearchInput';
+import { SearchList } from './ResultList';
+import { SearchInput } from './SearchInput';
 import styled from 'styled-components';
 
 export const SearchBar = () => {
