@@ -31,14 +31,15 @@ export const SearchInput = () => {
       <IconBox>
         <SearchIcon />
       </IconBox>
-      <InputForm>
+      <InputBox>
         <ElInput
           ref={inputRef}
           value={inputRef.current?.value}
           onChange={handleThrottleSearch}
+          autoFocus
         />
         <SubmitButton>검색</SubmitButton>
-      </InputForm>
+      </InputBox>
     </Container>
   );
 };
@@ -61,7 +62,7 @@ const IconBox = styled.div`
   height: ${({ theme }) => theme.size.lg};
 `;
 
-const InputForm = styled.form`
+const InputBox = styled.div`
   ${({ theme }) => theme.flex.isFlex};
   height: ${({ theme }) => theme.size.full};
 `;
