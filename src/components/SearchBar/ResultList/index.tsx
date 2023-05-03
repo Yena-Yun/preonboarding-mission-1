@@ -3,7 +3,7 @@ import { ResultItem } from './ResultItem';
 import { useAppSelector } from 'store/hooks/root';
 import { selectResult } from 'store/hooks/fetchResultThunk';
 
-export const SearchList = () => {
+export const ResultList = () => {
   const { results } = useAppSelector(selectResult);
 
   return (

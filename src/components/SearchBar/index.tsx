@@ -1,6 +1,6 @@
-import { SearchList } from './ResultList';
-import { SearchInput } from './SearchInput';
 import styled from 'styled-components';
+import { SearchInput } from './SearchInput';
+import { ResultList } from './ResultList';
 
 export const SearchBar = () => {
   return (
@@ -11,7 +11,7 @@ export const SearchBar = () => {
         온라인으로 참여하기
       </Title>
       <SearchInput />
-      <SearchList />
+      <ResultList />
     </Container>
   );
 };
