@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 import { SearchItem } from './SearchItem';
+import { useAppSelector } from 'store/hooks/root';
+import { selectResult } from 'store/hooks/fetchResultThunk';
 
 export const SearchList = () => {
-  const str = 'search';
-  const array = str.split('');
+  const { results } = useAppSelector(selectResult);
 
   return (
     <Container>
       <SubTitle>추천 검색어</SubTitle>
-      {array.map((item: string, id: number) => (
-        <SearchItem key={id} item={item} />
+      {results.map(({ id, name }) => (
+        <SearchItem key={id} name={name} />
       ))}
     </Container>
   );
