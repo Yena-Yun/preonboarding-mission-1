@@ -1,34 +1,39 @@
-import { useRef } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useAppDispatch } from 'store';
 import { fetchResultThunk } from 'store/fetchResultThunk';
+import { toggleIsOpen } from 'store/isOpenResultList';
+import { useDebounce } from 'hooks/useDebounce';
 import SearchIcon from 'assets/search.svg';
 
-export const SearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+export const SearchInput = () => {
   const dispatch = useAppDispatch();
-  const inputRef = useRef<HTMLInputElement>(null);
-  const throttlingRef = useRef(false);
+  const [inputValue, setInputValue] = useState('');
 
-  const handleThrottleSearch = () => {
-    console.log(inputRef.current?.value);
-
-    if (throttlingRef.current) {
-      return;
-    }
-
-    if (!inputRef.current?.value.trim()) {
-      return;
-    }
-
-    throttlingRef.current = true;
-
-    setTimeout(() => {
-      throttlingRef.current = false;
-      if (inputRef.current) {
-        dispatch(fetchResultThunk(inputRef.current.value));
-      }
-    }, 400);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
   };
+
+  const getSearchResults = () => {
+    if (inputValue) {
+      dispatch(fetchResultThunk(inputValue));
+      dispatch(toggleIsOpen(true));
+    }
+
+    if (!inputValue) {
+      dispatch(toggleIsOpen(false));
+    }
+  };
+
+  const debouncedInput = useDebounce(getSearchResults, 400);
+
+  useEffect(() => {
+    debouncedInput();
+  }, [inputValue]);
+
+  useEffect(() => {
+    dispatch(toggleIsOpen(false));
+  }, []);
 
   return (
     <Container>
@@ -36,11 +41,7 @@ export const SearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         <SearchIcon />
       </IconBox>
       <InputForm>
-        <ElInput
-          ref={inputRef}
-          value={inputRef.current?.value}
-          onChange={handleThrottleSearch}
-        />
+        <ElInput value={inputValue} onChange={handleChange} />
         <SubmitButton>검색</SubmitButton>
       </InputForm>
     </Container>
