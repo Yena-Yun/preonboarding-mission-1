@@ -14,8 +14,6 @@ const fetchResults = async (keyword: string) => {
       }
     );
 
-    console.info('calling api');
-
     return searchResultData;
   } catch (err) {
     console.log(err);
