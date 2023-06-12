@@ -4,8 +4,9 @@
 ## 🧪 실행 방법
 
 1. git clone
-2. yarn 또는 npm i
-3. yarn start 또는 npm run start
+2. yarn install
+3. yarn dev
+4. 터미널의 Local 링크를 Ctrl 키를 누른 채로 클릭
 
 ![녹화_2023_05_04_18_12_14_660](https://user-images.githubusercontent.com/68722179/236162184-44f942d1-2a37-449e-ba74-ca2d92e07b58.gif)
 
