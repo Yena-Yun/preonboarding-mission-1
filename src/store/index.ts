@@ -2,10 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 import resultReducer from './fetchResultThunk';
+import isOpenReducer from './isOpenResultList';
 
 export const store = configureStore({
   reducer: {
     results: resultReducer,
+    isOpenResults: isOpenReducer,
   },
 });
 

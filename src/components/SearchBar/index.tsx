@@ -1,17 +1,24 @@
 import styled from 'styled-components';
 import { SearchInput } from './SearchInput';
 import { ResultList } from './ResultList';
+import { useAppSelector } from 'store';
+import { selectIsOpenResults } from 'store/isOpenResultList';
+import { TITLE_PHRASES } from './constants/titlePhrases';
 
 export const SearchBar = () => {
+  const { isOpenResults } = useAppSelector(selectIsOpenResults);
+
+  const { line1, line2 } = TITLE_PHRASES;
+
   return (
     <Container>
       <Title>
-        국내 모든 임상시험 검색하고
+        {line1}
         <br />
-        온라인으로 참여하기
+        {line2}
       </Title>
       <SearchInput />
-      <ResultList />
+      {isOpenResults && <ResultList />}
     </Container>
   );
 };
@@ -26,5 +33,6 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
+  margin-bottom: 2rem;
   text-align: center;
 `;
