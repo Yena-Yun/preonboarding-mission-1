@@ -20,7 +20,12 @@ const Container = styled.div`
   position: relative;
   width: ${({ theme }) => theme.size.full};
   height: 3rem;
-  padding: ${({ theme }) => theme.size.xs} 0;
+  padding: ${({ theme }) => theme.size.xs} 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e4e4e4;
+  }
 `;
 
 const IconBox = styled.div`

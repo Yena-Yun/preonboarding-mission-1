@@ -10,7 +10,7 @@ export const ResultList = () => {
   return (
     <Container>
       <SubTitle>추천 검색어</SubTitle>
-      {results.length < 1 && <NoResultGuide>검색어 없음</NoResultGuide>}
+      {!results.length && <NoResultGuide>검색어 없음</NoResultGuide>}
       {results.map(({ id, name }: ResultState) => (
         <ResultItem key={id} name={name} />
       ))}
