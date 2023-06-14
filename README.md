@@ -1,5 +1,4 @@
-# preonboarding-mission-1
-원티드 프리온보딩 인턴십 1번째 기업 과제
+# 📚 Preonboarding 1번째 기업 과제
 
 ## 🧪 실행 방법
 
@@ -18,7 +17,7 @@
 ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
-## 🥊 캐싱과 입력 최적화
+## 🔎 작업 내역: 캐싱과 입력 최적화
 ### 1. 입력된 키워드 기준으로 캐싱 구현
 * redux-toolkit의 Thunk 함수에서 **비동기 API 호출을 처리하는 과정에서 캐싱 구현**
 * 입력한 키워드와 그에 맞는 검색 결과를 private 변수에 캐싱
